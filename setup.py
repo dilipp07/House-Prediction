@@ -18,4 +18,4 @@ def get_requirements(file_path:str)->List[str]:
 setup(name="LinearRegressorProject",
 version='0.0.1',author='Dilip',author_email='dilipkupanda23@gmail.com',
 packages=find_packages(),
-install_requirements=get_requirements(r"/config/workspace/requirements.txt")  )
+install_requirements=get_requirements("requirements.txt")  )
