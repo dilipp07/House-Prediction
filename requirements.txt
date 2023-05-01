@@ -6,5 +6,4 @@ matplotlib
 ipykernel
 scikit-learn
 -e .
-catboost
-xgboost
+flask

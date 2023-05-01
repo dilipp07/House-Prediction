@@ -4,6 +4,7 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import load_object
 import pandas as pd
+import numpy as np
 
 class PredictPipeline:
     def __init__(self):
@@ -13,14 +14,15 @@ class PredictPipeline:
         try:
             preprocessor_path=os.path.join('artifacts','preprocessor.pkl')
             model_path=os.path.join('artifacts','model.pkl')
-
             preprocessor=load_object(preprocessor_path)
             model=load_object(model_path)
-
             data_scaled=preprocessor.transform(features)
 
             pred=model.predict(data_scaled)
+            logging.info("done prediction")
             return pred
+            logging.info("returned pred value")
+
             
 
         except Exception as e:
@@ -49,33 +51,34 @@ class CustomData:
         self.CHAS=CHAS,
         self.NOX=NOX,
         self.RM=RM,
-      
         self.AGE=AGE,
         self.DIS=DIS,
         self.RAD=RAD,
         self.TAX=TAX,
         self.PTRATIO=PTRATIO,
         self.B=B,
-        self.LSTAT=LSAT
+        self.LSTAT=LSTAT
         
 
     def get_data_as_dataframe(self):
         try:
             custom_data_input_dict = {
-                'CRIM':[self.CRIM],
-                'ZN':[self.ZN],
-                'INDUS':[self.INDUS],
-                'CHAS':[self.CHAS],
-                'NOX':[self.NOX],
-                'RM':[self.RM],
-                'AGE':[self.AGE],
-                'DIS':[self.DIS],
-                'TAX':[self.TAX],
-                'PTRATIO':[self.PTRATIO],
-                'B':[self.B],
-                'LSAT':[self.LSAT]
-            }
+                'CRIM':[self.CRIM][0],
+                'ZN':[self.ZN][0],
+                'INDUS':[self.INDUS][0],
+                'CHAS':[self.CHAS][0],
+                'NOX':[self.NOX][0],
+                'RM':[self.RM][0],
+                'AGE':[self.AGE][0],
+                'DIS':[self.DIS][0],
+                'RAD':[self.RAD][0],
+                'TAX':[self.TAX][0],
+                'PTRATIO':[self.PTRATIO][0],
+                'B':[self.B][0],
+                'LSTAT':[self.LSTAT][0]}
+
             df = pd.DataFrame(custom_data_input_dict)
+           
             logging.info('Dataframe Gathered')
             return df
         except Exception as e:
