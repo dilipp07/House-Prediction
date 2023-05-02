@@ -28,7 +28,7 @@ class DataInjestion:
         logging.info("entered the data injestion method or component")
 
         try:
-            df=pd.read_csv(r"/config/workspace/Notebooks/boston_data.csv")
+            df=pd.read_csv(r"/Notebooks/boston_data.csv")
             logging.info("Exported the dataset as dataframe")
 
             os.makedirs(os.path.dirname(self.injestion_config.raw_data_path),exist_ok=True)
